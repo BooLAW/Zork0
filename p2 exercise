@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+
+	char* map[3][3] = { { "Wall", "Kitchen", "Pantry" },
+                        { "Wall", "Dinning Room", "Bathroom" },
+                        { "Wall", "Bedroom", "Wall" } };
+
+	char movecommand;
+	int x = 1, y = 1;
+	printf("You are in the %s\n", map[x][y]);
+
+	//char* position = map[x][y];//estamos en el 1 1
+	int exit = 0;
+	while (!exit){
+
+		printf("Which direction you want to go(n/s/e/w/q)?\n");
+		scanf("%c", &movecommand, 1);
+		getchar();
+		switch (movecommand){
+			case 'n':
+				if ((("Wall" == map[x - 1][y])) || ((x - 1) < 0)){
+					printf("You can't move there, there is a wall\n");
+				}
+				else{
+					x = x - 1;
+					printf("You are in the %s\n", map[x][y]);
+				}
+
+				break;
+			case 's':
+				if ((("Wall" ==  map[x + 1][y])) || ((x + 1) > 2)){
+					printf("You can't move there, there is a wall\n");
+				}
+				else{
+                    x = x + 1;
+					printf("You are in the %s\n", map[x][y]);
+				}
+
+				break;
+			case 'e':
+				if ((("Wall" == map[x][y + 1]) ) || ((y + 1) > 2)){
+					printf("You can't move there, there is a wall\n");
+				}
+				else{
+					y = y + 1;
+					printf("You are in the %s\n", map[x][y]);
+				}
+
+				break;
+			case 'w':
+				if ((("Wall" == map[x][y - 1])) || ((y - 1) < 0)){
+					printf("You can't move there, there is a wall\n");
+				}
+				else{
+					y = y - 1;
+                    printf("You are in the %s\n", map[x][y]);
+				}
+
+				break;
+			case 'q':
+				exit = 1;
+				break;
+		}
+	}
+
+	printf("Thanks for playing Zork\n");
+	system("pause");
+
+
+	return 0;
+}
